@@ -12,12 +12,16 @@ const style = makeStyles({
 });
 
 //take only history props from Switch
-export const SignIn = ({ history }) => {
+export const SignUp = ({ history }) => {
   const initialValues = {
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   };
   const validationSchema = Yup.object({
+    firstName: Yup.string().required("Required"),
+    lastName: Yup.string().required("Required"),
     email: Yup.string().email("Invalid email").required("email is required"),
     password: Yup.string().required("password is required"),
   });
@@ -26,7 +30,7 @@ export const SignIn = ({ history }) => {
       method: "POSt",
       headers: {},
       data: values,
-      url: "http://localhost:8090/signin",
+      url: "http://localhost:8090/signup",
     };
     const { data } = await Axios(options);
     console.log(data.token);
@@ -44,7 +48,13 @@ export const SignIn = ({ history }) => {
         return (
           <Form>
             <div className={classes.form}>
-              <Typography variant="h3">Sign In</Typography>
+              <Typography variant="h3">Sign Up</Typography>
+              <FormikControl
+                control="input"
+                name="firstName"
+                label="FirstName"
+              />
+              <FormikControl control="input" name="lastName" label="LastName" />
               <FormikControl control="input" name="email" label="E-mail" />
               <FormikControl
                 control="input"
@@ -61,15 +71,16 @@ export const SignIn = ({ history }) => {
                 color="secondary"
                 disabled={!props.isValid || props.isSubmitting}
               >
-                Sign In
+                Sign Up
               </Button>
+
               <Button
                 fullWidth
                 variant="text"
                 color="primary"
-                onClick={() => history.push("/signup")}
+                onClick={() => history.push("/signin")}
               >
-                Not Sign up Yet Go to Sign Up
+                Alredy a user go to Sign In
               </Button>
             </div>
           </Form>
