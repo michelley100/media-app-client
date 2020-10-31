@@ -3,6 +3,7 @@ import { Form, Formik } from "formik";
 import React from "react";
 import FormikControl from "./Components/Formik/FormikControl";
 import * as Yup from "yup";
+import Axios from "axios";
 
 const style = makeStyles({
   space: {
@@ -19,8 +20,16 @@ export const SignIn = () => {
     email: Yup.string().email("Invalid email").required("email is required"),
     password: Yup.string().required("password is required"),
   });
-  const onSubmit = (values) => {
-    console.log(values);
+  const onSubmit = async (values) => {
+    const options = {
+      method: "POSt",
+      headers: {},
+      data: values,
+      url: "http://localhost:8090/signin",
+    };
+    const { data } = await Axios(options);
+    console.log(data.token);
+    localStorage.setItem("token", data.token);
   };
 
   const classes = style();
