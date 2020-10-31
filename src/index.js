@@ -7,13 +7,14 @@ import { Home } from "./Home";
 import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
 import { Song } from "./Song";
+import { UnAuthoriseRoute } from "./UnauthoriseRoute";
 
 ReactDOM.render(
   <BrowserRouter>
     <CssBaseline />
     <Switch>
-      <Route path="/signup" component={SignUp} />
-      <Route path="/signin" component={SignIn} />
+      <UnAuthoriseRoute path="/signup" component={SignUp} mich="ddd" />
+      <UnAuthoriseRoute path="/signin" component={SignIn} />
       <AuthoriseRoute path="/home" component={Home} />
       <AuthoriseRoute path="/song" component={Song} />
       <Redirect to="/signup" />
