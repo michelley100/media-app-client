@@ -32,9 +32,14 @@ export const SignUp = ({ history }) => {
       data: values,
       url: "http://localhost:8090/signup",
     };
-    const { data } = await Axios(options);
-    console.log(data.token);
-    localStorage.setItem("token", data.token);
+    try {
+      const { data } = await Axios(options);
+      console.log(data.token);
+      localStorage.setItem("token", data.token);
+      history.push("/home");
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const classes = style();
