@@ -23,7 +23,7 @@ export const SignIn = ({ history }) => {
   });
   const onSubmit = async (values) => {
     const options = {
-      method: "POSt",
+      method: "POST",
       headers: {},
       data: values,
       url: "http://localhost:8090/signin",
