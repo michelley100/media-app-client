@@ -30,7 +30,7 @@ export const SignUp = ({ history }) => {
       method: "POST",
       headers: {},
       data: values,
-      url: "http://localhost:8090/signup",
+      url: "https://localhost:8090/signup",
     };
     try {
       const { data } = await Axios(options);
