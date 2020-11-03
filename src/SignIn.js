@@ -62,7 +62,7 @@ export const SignIn = ({ history }) => {
                 className={classes.space}
                 type="submit"
                 fullWidth
-                variant="outlined"
+                variant="contained"
                 color="secondary"
                 disabled={!props.isValid || props.isSubmitting}
               >
@@ -70,7 +70,7 @@ export const SignIn = ({ history }) => {
               </Button>
               <Button
                 fullWidth
-                variant="text"
+                variant="contained"
                 color="primary"
                 onClick={() => history.push("/signup")}
               >

@@ -51,7 +51,7 @@ export const SignUp = ({ history }) => {
     >
       {(props) => {
         return (
-          <Form>
+          <Form justifyContent="center">
             <div className={classes.form}>
               <Typography variant="h3">Sign Up</Typography>
               <FormikControl
@@ -72,7 +72,7 @@ export const SignUp = ({ history }) => {
                 className={classes.space}
                 type="submit"
                 fullWidth
-                variant="outlined"
+                variant="contained"
                 color="secondary"
                 disabled={!props.isValid || props.isSubmitting}
               >
@@ -81,7 +81,7 @@ export const SignUp = ({ history }) => {
 
               <Button
                 fullWidth
-                variant="text"
+                variant="contained"
                 color="primary"
                 onClick={() => history.push("/signin")}
               >
