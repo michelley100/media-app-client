@@ -1,13 +1,26 @@
-import { Button, makeStyles, TextField, Typography } from "@material-ui/core";
-import { Form, Formik } from "formik";
+import {
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  makeStyles,
+  Paper,
+  Typography,
+} from "@material-ui/core";
+import { Field, Form, Formik } from "formik";
 import React from "react";
-import FormikControl from "./Components/Formik/FormikControl";
 import * as Yup from "yup";
 import Axios from "axios";
+import { TextField } from "formik-material-ui";
+import { blue } from "@material-ui/core/colors";
 
 const style = makeStyles({
   space: {
-    marginTop: "100px",
+    marginTop: "80px",
+  },
+  background: {
+    backgroundColor: blue[700],
+    minHeight: "100vh",
   },
 });
 
@@ -44,53 +57,86 @@ export const SignUp = ({ history }) => {
 
   const classes = style();
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={onSubmit}
+    <Grid
+      container
+      className={classes.background}
+      justify="center"
+      alignItems="center"
     >
-      {(props) => {
-        return (
-          <Form justifyContent="center">
-            <div className={classes.form}>
-              <Typography variant="h3">Sign Up</Typography>
-              <FormikControl
-                control="input"
-                name="firstName"
-                label="FirstName"
-              />
-              <FormikControl control="input" name="lastName" label="LastName" />
-              <FormikControl control="input" name="email" label="E-mail" />
-              <FormikControl
-                control="input"
-                name="password"
-                label="Password"
-                type="password"
-              />
-
-              <Button
-                className={classes.space}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="secondary"
-                disabled={!props.isValid || props.isSubmitting}
+      <Grid item xs={11} sm={8} md={4}>
+        <Paper elevation={12}>
+          <Card>
+            <CardContent>
+              <Formik
+                initialValues={initialValues}
+                validationSchema={validationSchema}
+                onSubmit={onSubmit}
               >
-                Sign Up
-              </Button>
+                {(props) => {
+                  return (
+                    <Form>
+                      <Typography variant="h3">Sign Up</Typography>
+                      <Field
+                        component={TextField}
+                        name="firstName"
+                        label="First Name"
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                      />
+                      <Field
+                        component={TextField}
+                        name="lastName"
+                        label="LastName"
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                      />
+                      <Field
+                        component={TextField}
+                        name="email"
+                        label="E-mail"
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                      />
+                      <Field
+                        component={TextField}
+                        name="password"
+                        label="Password"
+                        type="password"
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                      />
 
-              <Button
-                fullWidth
-                variant="contained"
-                color="primary"
-                onClick={() => history.push("/signin")}
-              >
-                Alredy a user go to Sign In
-              </Button>
-            </div>
-          </Form>
-        );
-      }}
-    </Formik>
+                      <Button
+                        className={classes.space}
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="secondary"
+                        disabled={!props.isValid || props.isSubmitting}
+                      >
+                        Sign Up
+                      </Button>
+
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        onClick={() => history.push("/signin")}
+                      >
+                        Alredy a user go to Sign In
+                      </Button>
+                    </Form>
+                  );
+                }}
+              </Formik>
+            </CardContent>
+          </Card>
+        </Paper>
+      </Grid>
+    </Grid>
   );
 };
