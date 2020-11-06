@@ -16,7 +16,8 @@ ReactDOM.render(
       <UnAuthoriseRoute path="/signup" component={SignUp} mich="ddd" />
       <UnAuthoriseRoute path="/signin" component={SignIn} />
       <AuthoriseRoute path="/home" component={Home} />
-      <AuthoriseRoute path="/song" component={Song} />
+      <AuthoriseRoute path="/song/add" component={Song} />
+
       <Redirect to="/signup" />
     </Switch>
   </BrowserRouter>,
