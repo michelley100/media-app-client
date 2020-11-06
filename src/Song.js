@@ -1,17 +1,23 @@
 import { Button, Input } from "@material-ui/core";
 import { PostAdd } from "@material-ui/icons";
 import Axios from "axios";
-import { Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import React from "react";
-import FormikControl from "./Components/Formik/FormikControl";
 import * as Yup from "yup";
+import { TextField } from "formik-material-ui";
 
 export const Song = ({ history }) => {
   const initialSongs = {
     title: "",
+    artist: "",
+    genre: "",
+    comment: "",
   };
   const validateSong = Yup.object({
     title: Yup.string().required("Requires song title"),
+    artist: Yup.string().required("Requires song title"),
+    genre: Yup.string().required("Requires song title"),
+    comment: Yup.string().required("Requires song title"),
   });
 
   const onSubmit = async (values) => {
@@ -41,8 +47,45 @@ export const Song = ({ history }) => {
       {(props) => {
         return (
           <Form>
-            <FormikControl control="input" name="title" label="songs" />
-            <Button fullWidth variant="text" color="primary" type="submit">
+            <Field
+              component={TextField}
+              name="title"
+              label="songs"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+            <Field
+              component={TextField}
+              name="artist"
+              label="artist"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+            <Field
+              component={TextField}
+              name="genre"
+              label="genre"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+            <Field
+              component={TextField}
+              name="comment"
+              label="comment"
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+            <Button
+              fullWidth
+              variant="text"
+              color="primary"
+              type="submit"
+              disabled={!props.isValid || props.isSubmitting}
+            >
               ADD SONGS
             </Button>
 
