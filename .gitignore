@@ -231,3 +231,7 @@ fabric.properties
 
 /.idea/.gitignore
 /.idea/
+
+# Donot commit certificates lest it appear to public
+*.cert
+*.key
