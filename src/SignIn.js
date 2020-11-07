@@ -97,7 +97,7 @@ export const SignIn = ({ history }) => {
                           fullWidth
                           variant="contained"
                           color="secondary"
-                          disabled={!props.isValid || props.isSubmitting}
+                          disabled={!props.isValid || props.isSubmitting} //props of formik
                         >
                           Sign In
                         </Button>

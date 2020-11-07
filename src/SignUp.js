@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Field, Form, Formik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import * as Yup from "yup";
 import Axios from "axios";
 import { TextField } from "formik-material-ui";
@@ -32,6 +32,7 @@ export const SignUp = ({ history }) => {
     email: "",
     password: "",
   };
+
   const validationSchema = Yup.object({
     firstName: Yup.string().required("Required"),
     lastName: Yup.string().required("Required"),
@@ -127,7 +128,7 @@ export const SignUp = ({ history }) => {
                         color="primary"
                         onClick={() => history.push("/signin")}
                       >
-                        Alredy a user go to Sign In
+                        Already a user go to Sign In
                       </Button>
                     </Form>
                   );
