@@ -32,11 +32,11 @@ export const SongAdd = ({ history, match }) => {
     try {
       const data = await Axios(options);
       console.log(data);
+      history.push("/home");
     } catch (e) {
       console.log(e);
     }
   };
-  console.log(match);
 
   return (
     <Formik
