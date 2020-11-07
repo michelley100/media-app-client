@@ -10,7 +10,7 @@ import {
   Paper,
   Typography,
 } from "@material-ui/core";
-import { Delete } from "@material-ui/icons";
+import { Delete, Update } from "@material-ui/icons";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -69,7 +69,12 @@ export const Home = ({ history }) => {
       url: `https://localhost:8090/song/${id}`,
     };
     try {
-      const { data1 } = await Axios(options);
+      const { data } = await Axios(options); //delete from db
+      //disappear from frontend after delete
+      const newSongs = songs.filter(({ _id }) => {
+        return _id !== id;
+      });
+      setSongs(newSongs);
     } catch (e) {
       console.log(e);
     }
@@ -87,7 +92,7 @@ export const Home = ({ history }) => {
           {!loading &&
             songs.map((song) => {
               return (
-                <Grid item xs={11} sm={6} md={6} lg={4}>
+                <Grid item xs={11} sm={6} md={6} lg={4} key={song._id}>
                   <Paper elevation={2}>
                     <Card className={classes.root}>
                       <CardMedia
@@ -98,7 +103,7 @@ export const Home = ({ history }) => {
                         <Typography variant="h5">
                           {song.title.length < 8
                             ? song.title
-                            : song.title.substring(0, 5).concat("...")}
+                            : song.title.substring(0, 17).concat("...")}
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
                           {song.artist}
@@ -111,11 +116,18 @@ export const Home = ({ history }) => {
                           {song.genre}
                         </Typography>
                         <Typography variant="caption" color="textSecondary">
-                          {song._id}
+                          {song.comment.slice(0, 33).concat("...")}
                         </Typography>
                         <div className={classes.grow}></div>
                         <IconButton onClick={() => songDelete(song._id)}>
                           <Delete />
+                        </IconButton>
+                        <IconButton
+                          onClick={() =>
+                            history.push(`/song/update/${song._id}`)
+                          }
+                        >
+                          <Update />
                         </IconButton>
                       </CardContent>
                     </Card>

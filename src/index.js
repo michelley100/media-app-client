@@ -6,7 +6,8 @@ import { AuthoriseRoute } from "./AuthoriseRoute";
 import { Home } from "./Home";
 import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
-import { Song } from "./Song";
+import { Song, SongAdd } from "./SongAdd";
+import { SongUpdate } from "./SongUpdate";
 import { UnAuthoriseRoute } from "./UnauthoriseRoute";
 
 ReactDOM.render(
@@ -16,7 +17,8 @@ ReactDOM.render(
       <UnAuthoriseRoute path="/signup" component={SignUp} mich="ddd" />
       <UnAuthoriseRoute path="/signin" component={SignIn} />
       <AuthoriseRoute path="/home" component={Home} />
-      <AuthoriseRoute path="/song/add" component={Song} />
+      <AuthoriseRoute path="/song/add" component={SongAdd} />
+      <AuthoriseRoute path="/song/update/:id" component={SongUpdate} />
 
       <Redirect to="/signup" />
     </Switch>
