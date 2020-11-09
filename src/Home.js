@@ -145,6 +145,14 @@ export const Home = ({ history }) => {
       >
         Add Songs
       </Button>
+      <Button
+        fullWidth
+        variant="text"
+        color="secondary"
+        onClick={() => history.push("/users/list")}
+      >
+        Users List
+      </Button>
 
       <Button onClick={handleLogOut}>Log Out</Button>
     </Grid>

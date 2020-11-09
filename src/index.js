@@ -9,6 +9,7 @@ import { SignUp } from "./Auth/SignUp";
 import { SongAdd } from "./Pages/Songs/SongAdd";
 import { SongUpdate } from "./Pages/Songs/SongUpdate";
 import { UnAuthoriseRoute } from "./Auth/UnauthoriseRoute";
+import { UsersList } from "./Pages/Users/UserList";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -19,6 +20,7 @@ ReactDOM.render(
       <AuthoriseRoute path="/home" component={Home} />
       <AuthoriseRoute path="/song/add" component={SongAdd} />
       <AuthoriseRoute path="/song/update/:id" component={SongUpdate} />
+      <AuthoriseRoute path="/users/list" component={UsersList} />
 
       <Redirect to="/signup" />
     </Switch>
