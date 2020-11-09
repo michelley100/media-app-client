@@ -1,8 +1,31 @@
-import { Typography } from "@material-ui/core";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+  IconButton,
+  makeStyles,
+  Paper,
+  Typography,
+} from "@material-ui/core";
+import { Delete, Share } from "@material-ui/icons";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 
-export const UsersList = () => {
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+  },
+});
+
+export const UsersList = ({ history }) => {
+  const classes = useStyles();
   const [users, setusers] = useState(null);
   const [load, setload] = useState(true);
 
@@ -29,16 +52,80 @@ export const UsersList = () => {
     getUsers();
   }, []);
 
+  const UserDelete = async (id) => {
+    const token = localStorage.getItem("token");
+    const options = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      url: `https://localhost:8090/user/${id}`,
+    };
+    try {
+      const { data } = await Axios(options);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
-    <div>
-      {!load &&
-        users.map((user) => {
-          return (
-            <>
-              <h1>{user.firstName}</h1>
-            </>
-          );
-        })}
-    </div>
+    <Grid container spacing={1} direction="column">
+      <Grid item spacing={3}>
+        <Typography>Users List</Typography>
+      </Grid>
+      <Grid container spacing={4}>
+        {!load &&
+          users.map((user) => {
+            return (
+              <Grid
+                item
+                xs={11}
+                sm={6}
+                md={3}
+                lg={3}
+                direction="row"
+                justify="center"
+                alignItems="center"
+              >
+                <Paper elevation={1}>
+                  <Card className={classes.root}>
+                    <CardContent>
+                      <Typography component="h5" variant="h5">
+                        {user.firstName} {user.lastName}
+                      </Typography>
+
+                      <CardMedia
+                        className={classes.media}
+                        image="https://images.ctfassets.net/cnu0m8re1exe/2elnw1rJ0HL8QqPOd3OtH5/c5b25256f2f8c7ba398ef21a2ca6504d/Kid-Thinking.jpg?w=650&h=433&fit=fill"
+                      ></CardMedia>
+                      <Card>
+                        <Typography variant="subtitle1" color="textSecondary">
+                          {user.email}
+                        </Typography>
+                      </Card>
+                      <CardActions disableSpacing>
+                        <IconButton onClick={() => UserDelete(`${user._id}`)}>
+                          <Delete />
+                        </IconButton>
+                        <IconButton>
+                          <Share />
+                        </IconButton>
+                      </CardActions>
+                    </CardContent>
+                  </Card>
+                </Paper>
+              </Grid>
+            );
+          })}
+      </Grid>
+      <Button
+        fullWidth
+        variant="contained"
+        color="primary"
+        onClick={() => history.push("/home")}
+      >
+        BAHDUH
+      </Button>
+    </Grid>
   );
 };
