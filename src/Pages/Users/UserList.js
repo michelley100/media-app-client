@@ -62,7 +62,11 @@ export const UsersList = ({ history }) => {
       url: `https://localhost:8090/user/${id}`,
     };
     try {
-      const { data } = await Axios(options);
+      const { data } = await Axios(options); //from db
+      const newUsersList = users.filter(({ _id }) => {
+        return _id !== id; //from front end
+      });
+      setusers(newUsersList);
     } catch (e) {
       console.log(e);
     }
@@ -124,7 +128,7 @@ export const UsersList = ({ history }) => {
         color="primary"
         onClick={() => history.push("/home")}
       >
-        BAHDUH
+        HOME
       </Button>
     </Grid>
   );
