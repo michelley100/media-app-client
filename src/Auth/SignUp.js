@@ -12,20 +12,12 @@ import React, { useEffect } from "react";
 import * as Yup from "yup";
 import Axios from "axios";
 import { TextField } from "formik-material-ui";
-import { blue } from "@material-ui/core/colors";
-
-const style = makeStyles({
-  space: {
-    marginTop: "80px",
-  },
-  background: {
-    backgroundColor: blue[700],
-    minHeight: "100vh",
-  },
-});
+import { useStyles } from "./useStyles";
 
 //take only history props from Switch
 export const SignUp = ({ history }) => {
+  const classes = useStyles();
+
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -56,11 +48,10 @@ export const SignUp = ({ history }) => {
     }
   };
 
-  const classes = style();
   return (
     <Grid
       container
-      className={classes.background}
+      className={classes.signUpBackground}
       justify="center"
       alignItems="center"
     >
@@ -112,7 +103,7 @@ export const SignUp = ({ history }) => {
                       />
 
                       <Button
-                        className={classes.space}
+                        className={classes.signUpSpace}
                         type="submit"
                         fullWidth
                         variant="contained"

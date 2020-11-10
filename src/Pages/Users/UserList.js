@@ -6,23 +6,13 @@ import {
   CardMedia,
   Grid,
   IconButton,
-  makeStyles,
   Paper,
   Typography,
 } from "@material-ui/core";
-import { Delete, Share } from "@material-ui/icons";
+import { Delete, Update } from "@material-ui/icons";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9
-  },
-});
+import { useStyles } from "./useStyles";
 
 export const UsersList = ({ history }) => {
   const classes = useStyles();
@@ -111,8 +101,12 @@ export const UsersList = ({ history }) => {
                         <IconButton onClick={() => UserDelete(`${user._id}`)}>
                           <Delete />
                         </IconButton>
-                        <IconButton>
-                          <Share />
+                        <IconButton
+                          onClick={() =>
+                            history.push(`/user/update/${user._id}`)
+                          }
+                        >
+                          <Update />
                         </IconButton>
                       </CardActions>
                     </CardContent>
@@ -122,6 +116,7 @@ export const UsersList = ({ history }) => {
             );
           })}
       </Grid>
+
       <Button
         fullWidth
         variant="contained"

@@ -10,17 +10,22 @@ import { SongAdd } from "./Pages/Songs/SongAdd";
 import { SongUpdate } from "./Pages/Songs/SongUpdate";
 import { UnAuthoriseRoute } from "./Auth/UnauthoriseRoute";
 import { UsersList } from "./Pages/Users/UserList";
+import { UserUpdate } from "./Pages/Users/UserUpdate";
+import { Navbar } from "./Components/Navbar/Navbar";
 
 ReactDOM.render(
   <BrowserRouter>
     <CssBaseline />
+    <Navbar />
     <Switch>
       <UnAuthoriseRoute path="/signup" component={SignUp} />
       <UnAuthoriseRoute path="/signin" component={SignIn} />
+
       <AuthoriseRoute path="/home" component={Home} />
       <AuthoriseRoute path="/song/add" component={SongAdd} />
       <AuthoriseRoute path="/song/update/:id" component={SongUpdate} />
       <AuthoriseRoute path="/users/list" component={UsersList} />
+      <AuthoriseRoute path="/user/update/:id" component={UserUpdate} />
 
       <Redirect to="/signup" />
     </Switch>

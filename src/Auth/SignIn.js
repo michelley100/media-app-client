@@ -12,20 +12,12 @@ import React from "react";
 import * as Yup from "yup";
 import Axios from "axios";
 import { TextField } from "formik-material-ui";
-import { blueGrey } from "@material-ui/core/colors";
-
-const style = makeStyles({
-  space: {
-    marginTop: "100px",
-  },
-  background: {
-    backgroundColor: blueGrey[500],
-    height: "100vh",
-  },
-});
+import { useStyles } from "./useStyles";
 
 //take only history props from Switch
 export const SignIn = ({ history }) => {
+  const classes = useStyles();
+
   const initialValues = {
     email: "",
     password: "",
@@ -51,7 +43,6 @@ export const SignIn = ({ history }) => {
     }
   };
 
-  const classes = style();
   return (
     <Grid
       container
