@@ -10,7 +10,7 @@ import {
   Paper,
   Typography,
 } from "@material-ui/core";
-import { Delete, Share } from "@material-ui/icons";
+import { Delete, Share, Update } from "@material-ui/icons";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 
@@ -63,8 +63,8 @@ export const UsersList = ({ history }) => {
     };
     try {
       const { data } = await Axios(options); //from db
-      const newUsersList = users.filter(({ _id }) => {
-        return _id !== id; //from front end
+      const newUsersList = users.filter((user) => {
+        return user._id !== id; //from front end
       });
       setusers(newUsersList);
     } catch (e) {
@@ -85,7 +85,7 @@ export const UsersList = ({ history }) => {
                 item
                 xs={11}
                 sm={6}
-                md={3}
+                md={4}
                 lg={3}
                 direction="row"
                 justify="center"
@@ -111,8 +111,12 @@ export const UsersList = ({ history }) => {
                         <IconButton onClick={() => UserDelete(`${user._id}`)}>
                           <Delete />
                         </IconButton>
-                        <IconButton>
-                          <Share />
+                        <IconButton
+                          onClick={() =>
+                            history.push(`/user/update/${user._id}`)
+                          }
+                        >
+                          <Update />
                         </IconButton>
                       </CardActions>
                     </CardContent>
