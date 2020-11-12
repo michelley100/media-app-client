@@ -32,7 +32,7 @@ export const Home = ({ history }) => {
   const classes = useStyles();
   const handleLogOut = () => {
     localStorage.removeItem("token");
-    history.push("/signin");
+    history.push("/unauth");
   };
 
   const [songs, setSongs] = useState(null);

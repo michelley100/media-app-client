@@ -17,4 +17,7 @@ export const useStyles = makeStyles({
     backgroundColor: blue[700],
     minHeight: "100vh",
   },
+  grow: {
+    flexGrow: "1",
+  },
 });

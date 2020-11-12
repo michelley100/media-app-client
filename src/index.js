@@ -1,34 +1,24 @@
-import { Button, CssBaseline } from "@material-ui/core";
+import { CssBaseline } from "@material-ui/core";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { AuthoriseRoute } from "./Auth/AuthoriseRoute";
-import { Home } from "./Home";
-import { SignIn } from "./Auth/SignIn";
-import { SignUp } from "./Auth/SignUp";
-import { SongAdd } from "./Pages/Songs/SongAdd";
-import { SongUpdate } from "./Pages/Songs/SongUpdate";
 import { UnAuthoriseRoute } from "./Auth/UnauthoriseRoute";
-import { UsersList } from "./Pages/Users/UserList";
-import { UserUpdate } from "./Pages/Users/UserUpdate";
-import { Navbar } from "./Components/Navbar/Navbar";
+import { NotFound } from "./Errors/NotFound";
+import { UnAuth } from "./Auth/UnAuth";
+import { App } from "./App";
 
 ReactDOM.render(
   <BrowserRouter>
     <CssBaseline />
-    <Navbar />
-    <Switch>
-      <UnAuthoriseRoute path="/signup" component={SignUp} />
-      <UnAuthoriseRoute path="/signin" component={SignIn} />
-
-      <AuthoriseRoute path="/home" component={Home} />
-      <AuthoriseRoute path="/song/add" component={SongAdd} />
-      <AuthoriseRoute path="/song/update/:id" component={SongUpdate} />
-      <AuthoriseRoute path="/users/list" component={UsersList} />
-      <AuthoriseRoute path="/user/update/:id" component={UserUpdate} />
-
-      <Redirect to="/signup" />
-    </Switch>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/404" component={NotFound} />
+        <UnAuthoriseRoute path="/unauth" component={UnAuth} />
+        <AuthoriseRoute path="/home" component={App} />
+        <Redirect to="/unauth" />
+      </Switch>
+    </BrowserRouter>
   </BrowserRouter>,
   document.getElementById("root")
 );

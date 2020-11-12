@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   Grid,
-  makeStyles,
   Paper,
   Typography,
 } from "@material-ui/core";
@@ -62,7 +61,7 @@ export const SignIn = ({ history }) => {
                 {(props) => {
                   return (
                     <Form>
-                      <div className={classes.form}>
+                      <div className={classes.grow}>
                         <Typography variant="h3">Sign In</Typography>
                         <Field
                           component={TextField}
@@ -96,7 +95,7 @@ export const SignIn = ({ history }) => {
                           fullWidth
                           variant="contained"
                           color="primary"
-                          onClick={() => history.push("/signup")}
+                          onClick={() => history.push("/unauth/signup")}
                         >
                           Not Sign up Yet Go to Sign Up
                         </Button>

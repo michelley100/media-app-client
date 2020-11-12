@@ -4,10 +4,13 @@ import {
   IconButton,
   makeStyles,
   Toolbar,
+  Typography,
 } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import MenuIcon from "@material-ui/icons/Menu";
-import React from "react";
+import React, { useState } from "react";
+import { SideBarWithRouter } from "./SideBar";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,15 +18,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Navbar = ({ history }) => {
+const Navbar = ({ history }) => {
   const classes = useStyles();
+
+  const [opened, setOpened] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setOpened(!opened);
+  };
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton>
+          <IconButton onClick={handleDrawerToggle}>
             <MenuIcon />
           </IconButton>
+          <Typography>Jingrwai</Typography>
+
           <IconButton>
             <Search />
           </IconButton>
@@ -31,6 +42,9 @@ export const Navbar = ({ history }) => {
           <Button color="inherit">LOGIN</Button>
         </Toolbar>
       </AppBar>
+      <SideBarWithRouter opened={opened} toggleDrawer={handleDrawerToggle} />
     </div>
   );
 };
+
+export const NavbarWithRouter = withRouter(Navbar);
