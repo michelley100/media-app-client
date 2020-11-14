@@ -11,14 +11,12 @@ import { App } from "./App";
 ReactDOM.render(
   <BrowserRouter>
     <CssBaseline />
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/404" component={NotFound} />
-        <UnAuthoriseRoute path="/unauth" component={UnAuth} />
-        <AuthoriseRoute path="/home" component={App} />
-        <Redirect to="/unauth" />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route exact path="/404" component={NotFound} />
+      <UnAuthoriseRoute path="/unauth" component={UnAuth} />
+      <AuthoriseRoute path="/home" component={App} />
+      <Redirect to="/home" />
+    </Switch>
   </BrowserRouter>,
   document.getElementById("root")
 );

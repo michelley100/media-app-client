@@ -13,18 +13,15 @@ import { UserUpdate } from "./Pages/Users/UserUpdate";
 export const App = ({ history }) => {
   return (
     <>
-      <CssBaseline />
-      <BrowserRouter>
-        <NavbarWithRouter />
-        <Switch>
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/song/add" component={SongAdd} />
-          <Route exact path="/song/update/:id" component={SongUpdate} />
-          <Route exact path="/users/list" component={UsersList} />
-          <Route exact path="/user/update/:id" component={UserUpdate} />
-          <Redirect to="/unauth" />
-        </Switch>
-      </BrowserRouter>
+      <NavbarWithRouter />
+      <Switch>
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/song/add" component={SongAdd} />
+        <Route exact path="/song/update/:id" component={SongUpdate} />
+        <Route exact path="/users/list" component={UsersList} />
+        <Route exact path="/user/update/:id" component={UserUpdate} />
+        <Redirect to="/404" />
+      </Switch>
     </>
   );
 };

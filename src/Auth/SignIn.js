@@ -34,7 +34,7 @@ export const SignIn = ({ history }) => {
     };
     try {
       const { data } = await Axios(options);
-      console.log(data.token);
+      // console.log(data.token);
       localStorage.setItem("token", data.token);
       history.push("/home");
     } catch (e) {

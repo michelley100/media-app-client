@@ -116,7 +116,7 @@ export const SignUp = ({ history }) => {
                         fullWidth
                         variant="contained"
                         color="primary"
-                        onClick={() => history.push("/signin")}
+                        onClick={() => history.push("/unauth/signin")}
                       >
                         Already a user go to Sign In
                       </Button>
