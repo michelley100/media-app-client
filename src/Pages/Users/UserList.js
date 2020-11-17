@@ -12,12 +12,18 @@ import {
 import { Delete, Update } from "@material-ui/icons";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import { UserCard } from "./UserCard";
 import { useStyles } from "./useStyles";
 
-export const UsersList = ({ history }) => {
+export const UsersList = ({ history, user }) => {
   const classes = useStyles();
   const [users, setusers] = useState(null);
   const [load, setload] = useState(true);
+  const [reload, setReload] = useState(false);
+
+  const refresh = () => {
+    setReload(!reload);
+  };
 
   useEffect(() => {
     const getUsers = async () => {
@@ -40,27 +46,7 @@ export const UsersList = ({ history }) => {
       }
     };
     getUsers();
-  }, []);
-
-  const UserDelete = async (id) => {
-    const token = localStorage.getItem("token");
-    const options = {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      url: `https://localhost:8090/user/${id}`,
-    };
-    try {
-      const { data } = await Axios(options); //from db
-      const newUsersList = users.filter(({ _id }) => {
-        return _id !== id; //from front end
-      });
-      setusers(newUsersList);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  }, [refresh]);
 
   return (
     <Grid container spacing={1} direction="column">
@@ -71,61 +57,12 @@ export const UsersList = ({ history }) => {
         {!load &&
           users.map((user) => {
             return (
-              <Grid
-                item
-                xs={11}
-                sm={6}
-                md={3}
-                lg={3}
-                direction="row"
-                justify="center"
-                alignItems="center"
-              >
-                <Paper elevation={1}>
-                  <Card className={classes.root}>
-                    <CardContent>
-                      <Typography component="h5" variant="h5">
-                        {user.firstName.length >= 18
-                          ? user.firstName.slice(0, 17).concat("...")
-                          : user.firstName.length >= 10 &&
-                            user.firstName.length <= 17
-                          ? user.firstName +
-                            " " +
-                            user.lastName.slice(0, 6).concat("...")
-                          : user.firstName <= 10
-                          ? user.firstName +
-                            " " +
-                            user.lastName.slice(0, 4).concat("...")
-                          : user.firstName +
-                            " " +
-                            user.lastName.slice(0, 4).concat("...")}
-                      </Typography>
-
-                      <CardMedia
-                        className={classes.media}
-                        image="https://images.ctfassets.net/cnu0m8re1exe/2elnw1rJ0HL8QqPOd3OtH5/c5b25256f2f8c7ba398ef21a2ca6504d/Kid-Thinking.jpg?w=650&h=433&fit=fill"
-                      ></CardMedia>
-                      <Card>
-                        <Typography variant="subtitle1" color="textSecondary">
-                          {user.email}
-                        </Typography>
-                      </Card>
-                      <CardActions disableSpacing>
-                        <IconButton onClick={() => UserDelete(`${user._id}`)}>
-                          <Delete />
-                        </IconButton>
-                        <IconButton
-                          onClick={() =>
-                            history.push(`/user/update/${user._id}`)
-                          }
-                        >
-                          <Update />
-                        </IconButton>
-                      </CardActions>
-                    </CardContent>
-                  </Card>
-                </Paper>
-              </Grid>
+              <UserCard
+                {...{ user }}
+                {...users}
+                history={history}
+                refresh={refresh}
+              />
             );
           })}
       </Grid>
