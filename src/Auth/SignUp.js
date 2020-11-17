@@ -39,7 +39,7 @@ export const SignUp = ({ history }) => {
     };
     try {
       const { data } = await Axios(options);
-      console.log(data.token);
+      // console.log(data.token);
       localStorage.setItem("token", data.token);
       history.push("/home");
     } catch (e) {
@@ -50,9 +50,9 @@ export const SignUp = ({ history }) => {
   return (
     <Grid
       container
-      className={classes.signUpBackground}
       justify="center"
       alignItems="center"
+      className={classes.signUpBackground}
     >
       <Grid item xs={11} sm={8} md={4}>
         <Paper elevation={12}>

@@ -1,6 +1,6 @@
 import { LinearProgress } from "@material-ui/core";
 import React, { useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { SignIn } from "./SignIn";
 import { SignUp } from "./SignUp";
 
@@ -19,7 +19,7 @@ export const UnAuth = () => {
             return <SignUp toggleLoading={handleToggleLoading} {...props} />;
           }}
         </Route>
-        <Route exact path="/unauth">
+        <Route path="/unauth/">
           {(props) => {
             return <SignIn toggleLoading={handleToggleLoading} {...props} />;
           }}

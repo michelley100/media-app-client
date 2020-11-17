@@ -1,9 +1,8 @@
-import { CssBaseline } from "@material-ui/core";
+import { CssBaseline, makeStyles } from "@material-ui/core";
 import React from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { UnAuth } from "./Auth/UnAuth";
+import { Redirect, Route, Switch } from "react-router-dom";
 import { NavbarWithRouter } from "./Components/Navbar/Navbar";
-import { SideBar } from "./Components/Navbar/SideBar";
+import { useStyles } from "./Components/Navbar/useStyles";
 import { Home } from "./Home";
 import { SongAdd } from "./Pages/Songs/SongAdd";
 import { SongUpdate } from "./Pages/Songs/SongUpdate";
@@ -11,15 +10,17 @@ import { UsersList } from "./Pages/Users/UserList";
 import { UserUpdate } from "./Pages/Users/UserUpdate";
 
 export const App = ({ history }) => {
+  const classes = useStyles();
   return (
     <>
       <NavbarWithRouter />
+      <div className={classes.toolbar}></div>
       <Switch>
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/song/add" component={SongAdd} />
-        <Route exact path="/song/update/:id" component={SongUpdate} />
-        <Route exact path="/users/list" component={UsersList} />
-        <Route exact path="/user/update/:id" component={UserUpdate} />
+        <Route path="/home" component={Home} />
+        <Route path="/song/add" component={SongAdd} />
+        <Route path="/song/update/:id" component={SongUpdate} />
+        <Route path="/users/list" component={UsersList} />
+        <Route path="/user/update/:id" component={UserUpdate} />
         <Redirect to="/404" />
       </Switch>
     </>

@@ -61,45 +61,44 @@ export const SignIn = ({ history }) => {
                 {(props) => {
                   return (
                     <Form>
-                      <div className={classes.grow}>
-                        <Typography variant="h3">Sign In</Typography>
-                        <Field
-                          component={TextField}
-                          name="email"
-                          label="G-mail"
-                          fullWidth
-                          margin="normal"
-                          variant="outlined"
-                        />
-                        <Field
-                          component={TextField}
-                          name="password"
-                          label="Password"
-                          type="password"
-                          fullWidth
-                          margin="normal"
-                          variant="outlined"
-                        />
+                      <Typography variant="h3">Sign In</Typography>
+                      <Field
+                        component={TextField}
+                        name="email"
+                        label="G-mail"
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                      />
+                      <Field
+                        component={TextField}
+                        name="password"
+                        label="Password"
+                        type="password"
+                        fullWidth
+                        margin="normal"
+                        variant="outlined"
+                      />
 
-                        <Button
-                          className={classes.space}
-                          type="submit"
-                          fullWidth
-                          variant="contained"
-                          color="secondary"
-                          disabled={!props.isValid || props.isSubmitting} //props of formik
-                        >
-                          Sign In
-                        </Button>
-                        <Button
-                          fullWidth
-                          variant="contained"
-                          color="primary"
-                          onClick={() => history.push("/unauth/signup")}
-                        >
-                          Not Sign up Yet Go to Sign Up
-                        </Button>
-                      </div>
+                      <Button
+                        className={classes.space}
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="secondary"
+                        disabled={!props.isValid || props.isSubmitting} //props of formik
+                      >
+                        Sign In
+                      </Button>
+
+                      <Button
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        onClick={() => history.push("/unauth/signup")}
+                      >
+                        Not Sign up Yet Go to Sign Up
+                      </Button>
                     </Form>
                   );
                 }}

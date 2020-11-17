@@ -14,8 +14,8 @@ ReactDOM.render(
     <Switch>
       <Route exact path="/404" component={NotFound} />
       <UnAuthoriseRoute path="/unauth" component={UnAuth} />
-      <AuthoriseRoute path="/home" component={App} />
-      <Redirect to="/home" />
+      <AuthoriseRoute path="/" component={App} />
+      <Redirect to="/404" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

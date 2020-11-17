@@ -85,7 +85,20 @@ export const UsersList = ({ history }) => {
                   <Card className={classes.root}>
                     <CardContent>
                       <Typography component="h5" variant="h5">
-                        {user.firstName} {user.lastName}
+                        {user.firstName.length >= 18
+                          ? user.firstName.slice(0, 17).concat("...")
+                          : user.firstName.length >= 10 &&
+                            user.firstName.length <= 17
+                          ? user.firstName +
+                            " " +
+                            user.lastName.slice(0, 6).concat("...")
+                          : user.firstName <= 10
+                          ? user.firstName +
+                            " " +
+                            user.lastName.slice(0, 4).concat("...")
+                          : user.firstName +
+                            " " +
+                            user.lastName.slice(0, 4).concat("...")}
                       </Typography>
 
                       <CardMedia
@@ -116,15 +129,6 @@ export const UsersList = ({ history }) => {
             );
           })}
       </Grid>
-
-      <Button
-        fullWidth
-        variant="contained"
-        color="primary"
-        onClick={() => history.push("/home")}
-      >
-        HOME
-      </Button>
     </Grid>
   );
 };

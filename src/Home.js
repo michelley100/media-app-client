@@ -16,7 +16,7 @@ import { Delete, Update } from "@material-ui/icons";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   cover: {
     width: 151,
   },
@@ -26,7 +26,8 @@ const useStyles = makeStyles({
   grow: {
     flexGrow: "1",
   },
-});
+  toolbar: theme.mixins.toolbar,
+}));
 
 export const Home = ({ history }) => {
   const classes = useStyles();
@@ -139,24 +140,6 @@ export const Home = ({ history }) => {
             })}
         </Grid>
       </Box>
-      <Button
-        fullWidth
-        variant="text"
-        color="secondary"
-        onClick={() => history.push("/song/add")}
-      >
-        Add Songs
-      </Button>
-      <Button
-        fullWidth
-        variant="text"
-        color="secondary"
-        onClick={() => history.push("/users/list")}
-      >
-        Users List
-      </Button>
-
-      <Button onClick={handleLogOut}>Log Out</Button>
     </Grid>
   );
 };

@@ -3,8 +3,6 @@ import { Redirect, Route } from "react-router-dom";
 
 export const UnAuthoriseRoute = ({ ...props }) => {
   console.log(props);
-  if (localStorage.getItem("token")) {
-    return <Redirect to="/home" />;
-  }
+  localStorage.removeItem("token");
   return <Route {...props} />;
 };
