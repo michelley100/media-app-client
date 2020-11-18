@@ -16,8 +16,11 @@ import { Delete, Update } from "@material-ui/icons";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { SongCard } from "./Pages/Songs/SongCard";
+import { useStyles } from "./Components/Navbar/useStyles";
 
 export const Home = ({ history }) => {
+  const classes = useStyles();
+
   const handleLogOut = () => {
     localStorage.removeItem("token");
     history.push("/unauth");

@@ -1,23 +1,149 @@
 import {
   Box,
   Button,
+  Container,
   Divider,
   Drawer,
+  IconButton,
   List,
   ListItem,
   ListItemIcon,
+  ListItemText,
+  Tooltip,
   Typography,
+  useMediaQuery,
 } from "@material-ui/core";
-import { Home as HomeIcon } from "@material-ui/icons";
-import React from "react";
+import { Home as HomeIcon, KeyboardBackspace } from "@material-ui/icons";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import PeopleIcon from "@material-ui/icons/People";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
+import clsx from "clsx";
+import { useStyles } from "./useStyles";
+import { useTheme } from "@material-ui/core/styles";
 
 const SideBar = ({ opened, toggleDrawer, history }) => {
+  const classes = useStyles();
+  const theme = useTheme();
+  const isXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+
+  const [open, setOpen] = useState(false);
+
+  const routes = [
+    { path: "/home", icon: <HomeIcon />, name: "Home" },
+    { path: "/users/list", icon: <PeopleIcon />, name: "Users List" },
+    { path: "/song/add", icon: <PlaylistAddIcon />, name: "Add Songs" },
+  ];
+
+  const getRoutes = (routes) => {
+    return routes.map((route, index) => {
+      return (
+        <ListItem
+          button
+          onClick={() => {
+            if (isXS) {
+              toggleDrawer();
+            }
+            history.push(route.path);
+          }}
+          key={index}
+        >
+          <Tooltip title={route.name} placement="right">
+            <ListItemIcon>{route.icon}</ListItemIcon>
+          </Tooltip>
+          <ListItemText primary={route.name} />
+        </ListItem>
+      );
+    });
+  };
+
   return (
-    <Drawer anchor="left" open={opened} onClose={toggleDrawer}>
-      <List>
+    <nav className={classes.drawer}>
+      {isXS ? (
+        <Drawer
+          container={Container}
+          variant="temporary"
+          anchor="top"
+          open={opened}
+          onClose={toggleDrawer}
+          className={clsx(classes.drawer, {
+            [classes.drawerOpen]: opened,
+            [classes.drawerClose]: toggleDrawer,
+          })}
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: opened,
+              [classes.drawerClose]: toggleDrawer,
+            }),
+          }}
+        >
+          <div className={classes.toolbar}>
+            <IconButton onClick={toggleDrawer}>
+              {theme.direction === "rtl" ? (
+                <KeyboardBackspace />
+              ) : (
+                <KeyboardBackspace />
+              )}
+            </IconButton>
+          </div>
+
+          <Divider />
+
+          <List>
+            <ListItem>
+              <Typography variant="h4">Jingrwai</Typography>
+            </ListItem>
+
+            <Divider />
+            {getRoutes(routes)}
+          </List>
+        </Drawer>
+      ) : (
+        <Drawer
+          variant="permanent"
+          className={clsx(classes.drawer, {
+            [classes.drawerOpen]: opened,
+            [classes.drawerClose]: !opened,
+          })}
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: opened,
+              [classes.drawerClose]: !opened,
+            }),
+          }}
+        >
+          <div className={classes.toolbar} />
+          <List>{getRoutes(routes)}</List>
+        </Drawer>
+      )}
+    </nav>
+  );
+};
+
+export const SideBarWithRouter = withRouter(SideBar);
+
+{
+  /* <div className={classes.root}>
+  <Drawer
+    // anchor="left"
+    // open={opened}
+    // onClose={toggleDrawer}
+    variant="permanent"
+    className={clsx(classes.drawer, {
+      [classes.drawerOpen]: open,
+      [classes.drawerClose]: !open,
+    })}
+    classes={{
+      paper: clsx({
+        [classes.drawerOpen]: open,
+        [classes.drawerClose]: !open,
+      }),
+    }}
+  >
+    <List>
+      <div className={classes.toolbar}>
         <ListItem>
           <Box
             button
@@ -40,46 +166,46 @@ const SideBar = ({ opened, toggleDrawer, history }) => {
             </Button>
           </Box>
         </ListItem>
+      </div>
 
-        <Divider />
-        <ListItem button key="text">
-          <ListItemIcon
-            button
-            onClick={() => {
-              toggleDrawer();
-              history.push("/home");
-            }}
-          >
-            <HomeIcon />
-            <Typography> Home</Typography>
-          </ListItemIcon>
-        </ListItem>
+      <Divider />
+      <ListItem button key="text">
+        <ListItemIcon
+          button
+          onClick={() => {
+            toggleDrawer();
+            history.push("/home");
+          }}
+        >
+          <HomeIcon />
+          <Typography> Home</Typography>
+        </ListItemIcon>
+      </ListItem>
 
-        <ListItem button key="text">
-          <ListItemIcon
-            button
-            onClick={() => {
-              history.push("/users/list");
-            }}
-          >
-            <PeopleIcon />
-            <Typography> Users List</Typography>
-          </ListItemIcon>
-        </ListItem>
-        <ListItem button key="text">
-          <ListItemIcon
-            button
-            onClick={() => {
-              history.push("/song/add");
-            }}
-          >
-            <PlaylistAddIcon />
-            <Typography>Add Songs</Typography>
-          </ListItemIcon>
-        </ListItem>
-      </List>
-    </Drawer>
-  );
-};
+      <ListItem button key="text">
+        <ListItemIcon
+          button
+          onClick={() => {
+            history.push("/users/list");
+          }}
+        >
+          <PeopleIcon />
+          <Typography> Users List</Typography>
+        </ListItemIcon>
+      </ListItem>
 
-export const SideBarWithRouter = withRouter(SideBar);
+      <ListItem button key="text">
+        <ListItemIcon
+          button
+          onClick={() => {
+            history.push("/song/add");
+          }}
+        >
+          <PlaylistAddIcon />
+          <Typography>Add Songs</Typography>
+        </ListItemIcon>
+      </ListItem>
+    </List>
+  </Drawer>
+</div> */
+}

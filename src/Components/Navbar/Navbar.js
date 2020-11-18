@@ -4,6 +4,7 @@ import {
   IconButton,
   ListItem,
   Toolbar,
+  Tooltip,
   Typography,
 } from "@material-ui/core";
 import { ExitToApp, Search } from "@material-ui/icons";
@@ -12,57 +13,72 @@ import React, { useState } from "react";
 import { SideBarWithRouter } from "./SideBar";
 import { withRouter } from "react-router-dom";
 import { useStyles } from "./useStyles";
+import clsx from "clsx";
 
 const Navbar = ({ history }) => {
   const classes = useStyles();
 
   const [opened, setOpened] = useState(false);
 
-  const LogOut = () => {
-    localStorage.removeItem("token");
-    history.push("/unauth");
-  };
-
   const handleDrawerToggle = () => {
     setOpened(!opened);
   };
+
   return (
-    <div>
-      <AppBar position="fixed" className={classes.appBar}>
+    <>
+      <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: opened,
+        })}
+      >
         <Toolbar>
-          <IconButton onClick={handleDrawerToggle}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            onClick={handleDrawerToggle}
+            className={classes.menuButton}
+          >
             <MenuIcon />
           </IconButton>
-          <ListItem>
-            <Button
-              color="inherit"
-              button
-              key="text"
-              onClick={() => {
-                history.push("/home");
-              }}
-            >
-              <Typography>Jingrwai</Typography>
-            </Button>
-          </ListItem>
+
+          <Tooltip arrow title="home">
+            <ListItem>
+              <Button
+                color="inherit"
+                button
+                key="text"
+                onClick={() => {
+                  history.push("/home");
+                }}
+              >
+                <Typography noWrap>Jingrwai</Typography>
+              </Button>
+            </ListItem>
+          </Tooltip>
+
+          <div className={classes.grow} />
 
           <IconButton>
             <Search />
           </IconButton>
+
           <div className={classes.root}></div>
-          <IconButton
-            color="inherit"
-            onClick={() => {
-              localStorage.removeItem("token");
-              history.push("/home");
-            }}
-          >
-            <ExitToApp />
-          </IconButton>
+          <Tooltip arrow title="Log out">
+            <IconButton
+              color="inherit"
+              onClick={() => {
+                localStorage.removeItem("token");
+                history.push("/home");
+              }}
+            >
+              <ExitToApp />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
       <SideBarWithRouter opened={opened} toggleDrawer={handleDrawerToggle} />
-    </div>
+    </>
   );
 };
 

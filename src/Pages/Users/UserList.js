@@ -1,22 +1,9 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Grid,
-  IconButton,
-  Paper,
-  Typography,
-} from "@material-ui/core";
-import { Delete, Update } from "@material-ui/icons";
+import { Grid, Typography } from "@material-ui/core";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { UserCard } from "./UserCard";
-import { useStyles } from "./useStyles";
 
 export const UsersList = ({ history, user }) => {
-  const classes = useStyles();
   const [users, setusers] = useState(null);
   const [load, setload] = useState(true);
   const [reload, setReload] = useState(false);

@@ -1,23 +1,15 @@
 import React from "react";
 import {
-  AppBar,
-  Box,
-  Button,
   Card,
-  CardActionArea,
-  CardActions,
   CardContent,
   CardMedia,
   Grid,
   IconButton,
-  makeStyles,
   Paper,
-  Toolbar,
   Typography,
 } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import Axios from "axios";
-import { useEffect, useState } from "react";
 import { useStyles } from "./useStyles";
 
 export const SongCard = ({ song, history, refresh }) => {
