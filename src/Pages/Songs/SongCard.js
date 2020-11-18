@@ -54,7 +54,9 @@ export const SongCard = ({ song, history, refresh }) => {
               {song.genre}
             </Typography>
             <Typography variant="caption" color="textSecondary">
-              {song.comment.slice(0, 33).concat("...")}
+              {song.comment.length < 26
+                ? song.comment
+                : song.comment.slice(0, 26).concat("...")}
             </Typography>
             <div className={classes.grow}></div>
             <IconButton onClick={() => songDelete(song._id)}>
