@@ -22,7 +22,7 @@ import clsx from "clsx";
 import { useStyles } from "./useStyles";
 import { useTheme } from "@material-ui/core/styles";
 
-const SideBar = ({ opened, toggleDrawer, history }) => {
+const SideBar = ({ opened, toggleDrawer, history, window }) => {
   const classes = useStyles();
   const theme = useTheme();
   const isXS = useMediaQuery(theme.breakpoints.down("xs"));
@@ -63,21 +63,11 @@ const SideBar = ({ opened, toggleDrawer, history }) => {
     <nav className={classes.drawer}>
       {isXS ? (
         <Drawer
-          container={Container}
+          container={container}
           variant="temporary"
           anchor="top"
           open={opened}
           onClose={toggleDrawer}
-          className={clsx(classes.drawer, {
-            [classes.drawerOpen]: opened,
-            [classes.drawerClose]: toggleDrawer,
-          })}
-          classes={{
-            paper: clsx({
-              [classes.drawerOpen]: opened,
-              [classes.drawerClose]: toggleDrawer,
-            }),
-          }}
         >
           <div className={classes.toolbar}>
             <IconButton onClick={toggleDrawer}>
