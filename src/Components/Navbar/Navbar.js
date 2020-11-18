@@ -29,7 +29,7 @@ const Navbar = ({ history }) => {
       <AppBar
         position="fixed"
         className={clsx(classes.appBar, {
-          [classes.appBarShift]: opened,
+          // [classes.appBarShift]: opened,
         })}
       >
         <Toolbar>
