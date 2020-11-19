@@ -46,8 +46,8 @@ export const SongForm = ({
       const data = await Axios(options);
 
       console.log(data);
-      refresh();
       onClose();
+      refresh();
     } catch (e) {
       console.log(e);
     }

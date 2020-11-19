@@ -1,17 +1,4 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  IconButton,
-  makeStyles,
-  Paper,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
+import { Box, Button, Grid, Typography } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -19,6 +6,7 @@ import { SongCard } from "./Pages/Songs/SongCard";
 import { useStyles } from "./Components/Navbar/useStyles";
 import { useModal } from "react-modal-hook";
 import { SongForm } from "./Pages/Songs/SongForm";
+import { SongFormDialog } from "./Pages/Songs/SongFormDialog";
 
 export const Home = ({ history }) => {
   const classes = useStyles();
@@ -30,6 +18,18 @@ export const Home = ({ history }) => {
   const refresh = () => {
     setReload((reload) => !reload);
   };
+
+  const [
+    showCreateModal,
+    hideCreateModal,
+  ] = useModal(({ in: open, onExited }) => (
+    <SongFormDialog
+      open={open}
+      onExited={onExited}
+      onClose={hideCreateModal}
+      refresh={refresh}
+    />
+  ));
 
   useEffect(() => {
     const getSongs = async () => {
@@ -62,6 +62,8 @@ export const Home = ({ history }) => {
           </Grid>
         </Box>
         <Box mx={2}>
+          <Button onClick={showCreateModal}>Add Song</Button>
+
           <Grid item container spacing={4}>
             {!loading &&
               songs.map((song) => {

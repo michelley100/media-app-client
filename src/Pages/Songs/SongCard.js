@@ -13,6 +13,7 @@ import Axios from "axios";
 import { useStyles } from "./useStyles";
 import { useModal } from "react-modal-hook";
 import { SongFormDialog } from "./SongFormDialog";
+import { ConfirmDialog } from "./ConfirmDialog";
 
 export const SongCard = ({ song, history, refresh, ...rest }) => {
   const classes = useStyles();
@@ -27,6 +28,26 @@ export const SongCard = ({ song, history, refresh, ...rest }) => {
       refresh={refresh}
     />
   ));
+
+  const [showConfirmModal, hideConfirmModal] = useModal(
+    ({ in: open, onExited }) => (
+      <ConfirmDialog
+        open={open}
+        onExited={onExited}
+        title="Delete Song?"
+        confirmLabel="Delete Song"
+        id={song._id}
+        name={song.title}
+        description={`Do you really want to delete ${song.title}?`}
+        onConfirm={() => songDelete()}
+        onCancel={hideConfirmModal}
+        refresh={refresh}
+      >
+        {/* <Typography> Do you really want to delete {song.title}? </Typography> */}
+      </ConfirmDialog>
+    ),
+    [song]
+  );
 
   const songDelete = async () => {
     const token = localStorage.getItem("token");
@@ -72,17 +93,20 @@ export const SongCard = ({ song, history, refresh, ...rest }) => {
                 : song.comment.slice(0, 26).concat("...")}
             </Typography>
             <div className={classes.grow}></div>
-            <IconButton onClick={() => songDelete(song._id)}>
+            {/* <IconButton onClick={() => songDelete(song._id)}>
               <Delete />
-            </IconButton>
-            <IconButton
-              onClick={() => history.push(`/song/update/${song._id}`)}
-            >
-              <Update />
+            </IconButton> */}
+            <IconButton onClick={showConfirmModal}>
+              <Delete />
             </IconButton>
             <IconButton onClick={showEditModal}>
               <Update />
             </IconButton>
+            {/* <IconButton
+              onClick={() => history.push(`/song/update/${song._id}`)}
+            >
+              <Update />
+            </IconButton> */}
           </CardContent>
         </Card>
       </Paper>
