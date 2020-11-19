@@ -17,21 +17,18 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { SongCard } from "./Pages/Songs/SongCard";
 import { useStyles } from "./Components/Navbar/useStyles";
+import { useModal } from "react-modal-hook";
+import { SongForm } from "./Pages/Songs/SongForm";
 
 export const Home = ({ history }) => {
   const classes = useStyles();
-
-  const handleLogOut = () => {
-    localStorage.removeItem("token");
-    history.push("/unauth");
-  };
 
   const [songs, setSongs] = useState(null);
   const [loading, setLoading] = useState(true);
   const [reload, setReload] = useState(false);
 
   const refresh = () => {
-    setReload(!reload);
+    setReload((reload) => !reload);
   };
 
   useEffect(() => {
@@ -57,27 +54,29 @@ export const Home = ({ history }) => {
   }, [reload]);
 
   return (
-    <Grid container spacing={2} direction="column">
-      <Box m={2}>
-        <Grid item xs={2}>
-          <Typography>Songs</Typography>
-        </Grid>
-      </Box>
-      <Box mx={2}>
-        <Grid item container spacing={4}>
-          {!loading &&
-            songs.map((song) => {
-              return (
-                <SongCard
-                  {...{ song }}
-                  key={song._id}
-                  history={history}
-                  refresh={refresh}
-                />
-              );
-            })}
-        </Grid>
-      </Box>
-    </Grid>
+    <>
+      <Grid container spacing={2} direction="column">
+        <Box m={2}>
+          <Grid item xs={2}>
+            <Typography>Songs</Typography>
+          </Grid>
+        </Box>
+        <Box mx={2}>
+          <Grid item container spacing={4}>
+            {!loading &&
+              songs.map((song) => {
+                return (
+                  <SongCard
+                    {...{ song }}
+                    key={song._id}
+                    history={history}
+                    refresh={refresh}
+                  />
+                );
+              })}
+          </Grid>
+        </Box>
+      </Grid>
+    </>
   );
 };

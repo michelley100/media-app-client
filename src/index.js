@@ -7,16 +7,20 @@ import { UnAuthoriseRoute } from "./Auth/UnauthoriseRoute";
 import { NotFound } from "./Errors/NotFound";
 import { UnAuth } from "./Auth/UnAuth";
 import { App } from "./App";
+import { TransitionGroup } from "react-transition-group";
+import { ModalProvider } from "react-modal-hook";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <CssBaseline />
-    <Switch>
-      <Route exact path="/404" component={NotFound} />
-      <UnAuthoriseRoute path="/unauth" component={UnAuth} />
-      <AuthoriseRoute path="/" component={App} />
-      <Redirect to="/404" />
-    </Switch>
-  </BrowserRouter>,
+  <ModalProvider rootComponent={TransitionGroup}>
+    <BrowserRouter>
+      <CssBaseline />
+      <Switch>
+        <Route exact path="/404" component={NotFound} />
+        <UnAuthoriseRoute path="/unauth" component={UnAuth} />
+        <AuthoriseRoute path="/" component={App} />
+        <Redirect to="/404" />
+      </Switch>
+    </BrowserRouter>
+  </ModalProvider>,
   document.getElementById("root")
 );

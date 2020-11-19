@@ -11,9 +11,22 @@ import {
 import { Delete, Update } from "@material-ui/icons";
 import Axios from "axios";
 import { useStyles } from "./useStyles";
+import { useModal } from "react-modal-hook";
+import { SongFormDialog } from "./SongFormDialog";
 
-export const SongCard = ({ song, history, refresh }) => {
+export const SongCard = ({ song, history, refresh, ...rest }) => {
   const classes = useStyles();
+
+  const [showEditModal, hideEditModal] = useModal(({ in: open, onExited }) => (
+    <SongFormDialog
+      open={open}
+      onExited={onExited}
+      onClose={hideEditModal}
+      id={song._id}
+      isEdit
+      refresh={refresh}
+    />
+  ));
 
   const songDelete = async () => {
     const token = localStorage.getItem("token");
@@ -65,6 +78,9 @@ export const SongCard = ({ song, history, refresh }) => {
             <IconButton
               onClick={() => history.push(`/song/update/${song._id}`)}
             >
+              <Update />
+            </IconButton>
+            <IconButton onClick={showEditModal}>
               <Update />
             </IconButton>
           </CardContent>
