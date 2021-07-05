@@ -14,9 +14,15 @@ import { useStyles } from "./useStyles";
 import { useModal } from "react-modal-hook";
 import { SongFormDialog } from "./SongFormDialog";
 import { ConfirmDialog } from "./ConfirmDialog";
+import VideoPlayer from 'react-video-js-player';
+import Vid from "../../videos/CASTINGCROWNS1.mp4"
 
 export const SongCard = ({ song, history, refresh, ...rest }) => {
   const classes = useStyles();
+  const videoSrc = Vid;
+  const poster = "https://cdn.pixabay.com/photo/2014/02/27/16/10/tree-276014__340.jpg"
+
+
 
   const [showEditModal, hideEditModal] = useModal(({ in: open, onExited }) => (
     <SongFormDialog
@@ -71,10 +77,10 @@ export const SongCard = ({ song, history, refresh, ...rest }) => {
     <Grid item xs={11} sm={6} md={6} lg={4} key={song._id}>
       <Paper elevation={2}>
         <Card className={classes.root}>
-          <CardMedia
+          {/* <CardMedia
             className={classes.cover}
             image="https://a10.gaanacdn.com/images/albums/96/1506996/crop_175x175_1506996.jpg"
-          />
+          /> */}
           <CardContent>
             <Typography variant="h5">
               {song.title.length < 8
@@ -107,6 +113,12 @@ export const SongCard = ({ song, history, refresh, ...rest }) => {
             >
               <Update />
             </IconButton> */}
+            <VideoPlayer
+          src={Vid}
+          poster={poster}
+          width="320"
+          height="120"
+          />
           </CardContent>
         </Card>
       </Paper>
