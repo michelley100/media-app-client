@@ -18,6 +18,7 @@ import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import PeopleIcon from "@material-ui/icons/People";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
+import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
 import clsx from "clsx";
 import { useStyles } from "./useStyles";
 import { useTheme } from "@material-ui/core/styles";
@@ -33,6 +34,7 @@ const SideBar = ({ opened, toggleDrawer, history, window }) => {
 
   const routes = [
     { path: "/home", icon: <HomeIcon />, name: "Home" },
+    { path: "/videoplaying", icon: <VideoLibraryIcon />, name: "Video Playing" },
     { path: "/users/list", icon: <PeopleIcon />, name: "Users List" },
     { path: "/song/add", icon: <PlaylistAddIcon />, name: "Add Songs" },
   ];

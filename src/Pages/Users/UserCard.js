@@ -53,7 +53,13 @@ export const UserCard = ({ user, history, refresh }) => {
       <Paper elevation={1}>
         <Card className={classes.root}>
           <CardContent>
-            <Typography component="h5" variant="h5">
+            
+
+            <CardMedia
+              className={classes.media}
+              image="https://images.ctfassets.net/cnu0m8re1exe/2elnw1rJ0HL8QqPOd3OtH5/c5b25256f2f8c7ba398ef21a2ca6504d/Kid-Thinking.jpg?w=650&h=433&fit=fill"
+            ></CardMedia>
+            <Typography component="h6" variant="h6">
               {user.firstName.length >= 18
                 ? user.firstName.slice(0, 17).concat("...")
                 : user.firstName.length >= 10 && user.firstName.length <= 17
@@ -62,11 +68,6 @@ export const UserCard = ({ user, history, refresh }) => {
                 ? user.firstName + " " + user.lastName.slice(0, 4).concat("...")
                 : user.firstName + " " + user.lastName.slice(0, 10)}
             </Typography>
-
-            <CardMedia
-              className={classes.media}
-              image="https://images.ctfassets.net/cnu0m8re1exe/2elnw1rJ0HL8QqPOd3OtH5/c5b25256f2f8c7ba398ef21a2ca6504d/Kid-Thinking.jpg?w=650&h=433&fit=fill"
-            ></CardMedia>
             <Card>
               <Typography variant="subtitle1" color="textSecondary">
                 {user.email}

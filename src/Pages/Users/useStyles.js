@@ -5,7 +5,16 @@ export const useStyles = makeStyles({
     maxWidth: 345,
   },
   media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9
+    height: 140,
+    // paddingTop: "56.25%", // 16:9
   },
+  cover: {
+    // width: "flex",
+    height: 140,
+  },
+
+  grow: {
+    flexGrow: "1",
+  },
+  // toolbar: theme.mixins.toolbar,
 });

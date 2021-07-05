@@ -1,4 +1,9 @@
-import { Box, Button, Grid, Typography } from "@material-ui/core";
+import { Box, Button, Grid, Typography,  Card,
+  CardContent,
+  CardMedia,
+    IconButton,
+  Paper,
+ } from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -7,8 +12,8 @@ import { useStyles } from "./Components/Navbar/useStyles";
 import { useModal } from "react-modal-hook";
 import { SongForm } from "./Pages/Songs/SongForm";
 import { SongFormDialog } from "./Pages/Songs/SongFormDialog";
-import VideoPlayer from 'react-video-js-player';
-import Vid from "./videos/CASTINGCROWNS1.mp4"
+
+
 
 export const Home = ({ history }) => {
   const classes = useStyles();
@@ -16,10 +21,6 @@ export const Home = ({ history }) => {
   const [songs, setSongs] = useState(null);
   const [loading, setLoading] = useState(true);
   const [reload, setReload] = useState(false);
-
-  //videojs
-  const videoSrc = Vid;
-  const poster = "https://cdn.pixabay.com/photo/2014/02/27/16/10/tree-276014__340.jpg"
 
 
   const refresh = () => {
@@ -85,13 +86,7 @@ export const Home = ({ history }) => {
               })}
           </Grid>
 
-          <VideoPlayer
-          src={Vid}
-          poster={poster}
-          width="520"
-          height="220"
-          />
-        </Box>
+                  </Box>
       </Grid>
     </>
   );

@@ -8,6 +8,8 @@ import { SongUpdate } from "./Pages/Songs/SongUpdate";
 import { UsersList } from "./Pages/Users/UserList";
 import { UserUpdate } from "./Pages/Users/UserUpdate";
 import { useStyles } from "./Components/Navbar/useStyles";
+import { VideoPlaying } from "./Pages/VideoPlaying/VideoPage.js";
+
 
 export const App = ({ history }) => {
   const classes = useStyles();
@@ -19,6 +21,7 @@ export const App = ({ history }) => {
           <div className={classes.toolbar} />
           <Switch>
             <Route path="/home" component={Home} />
+            <Route path="/videoplaying" component={VideoPlaying} />
             <Route path="/song/add" component={SongAdd} />
             <Route path="/song/update/:id" component={SongUpdate} />
             <Route path="/users/list" component={UsersList} />
