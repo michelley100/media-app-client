@@ -45,9 +45,13 @@ export const SongForm = ({
     try {
       const data = await Axios(options);
 
-      console.log(data);
-      onClose();
-      refresh();
+     if (isEdit){
+        onClose(); 
+       refresh();
+       }
+      
+      history.push('/home')
+
     } catch (e) {
       console.log(e);
     }
@@ -67,6 +71,7 @@ export const SongForm = ({
       };
       try {
         const { data } = await Axios(options);
+        console.log("data",data);
         setoldSong(data);
       } catch (e) {
         console.log(e);
