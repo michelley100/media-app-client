@@ -10,7 +10,6 @@ import { UserUpdate } from "./Pages/Users/UserUpdate";
 import { useStyles } from "./Components/Navbar/useStyles";
 import { VideoPlaying } from "./Pages/VideoPlaying/VideoPage.js";
 
-
 export const App = ({ history }) => {
   const classes = useStyles();
   return (

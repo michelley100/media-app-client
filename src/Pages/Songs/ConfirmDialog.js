@@ -35,5 +35,5 @@ export const ConfirmDialog = ({
         {confirmLabel}
       </Button>
     </DialogActions>
-  </Dialog>
+                  </Dialog>
 );

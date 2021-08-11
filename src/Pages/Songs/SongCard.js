@@ -15,7 +15,7 @@ import { useModal } from "react-modal-hook";
 import { SongFormDialog } from "./SongFormDialog";
 import { ConfirmDialog } from "./ConfirmDialog";
 import VideoPlayer from 'react-video-js-player';
-import Vid from "../../videos/CASTINGCROWNS1.mp4"
+import Vid from "../../videos/Norway.mp4"
 
 export const SongCard = ({ song, history, refresh, ...rest }) => {
   const classes = useStyles();
@@ -114,11 +114,11 @@ export const SongCard = ({ song, history, refresh, ...rest }) => {
               <Update />
             </IconButton> */}
             <VideoPlayer
-          src={Vid}
-          poster={poster}
-          width="320"
-          height="120"
-          />
+              src={Vid}
+              poster={poster}
+              width="320"
+              height="120"
+            />
           </CardContent>
         </Card>
       </Paper>
