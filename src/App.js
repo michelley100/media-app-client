@@ -9,6 +9,8 @@ import { UsersList } from "./Pages/Users/UserList";
 import { UserUpdate } from "./Pages/Users/UserUpdate";
 import { useStyles } from "./Components/Navbar/useStyles";
 import { VideoPlaying } from "./Pages/VideoPlaying/VideoPage.js";
+import { YoutubeVideos } from "./Pages/YoutubeVideos/Youtube.js";
+
 
 export const App = ({ history }) => {
   const classes = useStyles();
@@ -21,6 +23,7 @@ export const App = ({ history }) => {
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/videoplaying" component={VideoPlaying} />
+            <Route path="/youtubevideos" component={YoutubeVideos} />
             <Route path="/song/add" component={SongAdd} />
             <Route path="/song/update/:id" component={SongUpdate} />
             <Route path="/users/list" component={UsersList} />

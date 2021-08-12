@@ -35,6 +35,7 @@ const SideBar = ({ opened, toggleDrawer, history, window }) => {
   const routes = [
     { path: "/home", icon: <HomeIcon />, name: "Home" },
     { path: "/videoplaying", icon: <VideoLibraryIcon />, name: "Video Playing" },
+    { path: "/youtubevideos", icon: <VideoLibraryIcon />, name: "Youtube Videos" },
     { path: "/users/list", icon: <PeopleIcon />, name: "Users List" },
     { path: "/song/add", icon: <PlaylistAddIcon />, name: "Add Songs" },
   ];
@@ -85,7 +86,7 @@ const SideBar = ({ opened, toggleDrawer, history, window }) => {
 
           <List>
             <ListItem>
-              <Typography variant="h4">Jingrwai</Typography>
+              <Typography variant="h4">Media App</Typography>
             </ListItem>
 
             <Divider />

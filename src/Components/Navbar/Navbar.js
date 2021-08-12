@@ -52,7 +52,7 @@ const Navbar = ({ history }) => {
                   history.push("/home");
                 }}
               >
-                <Typography noWrap>Jingrwai</Typography>
+                <Typography noWrap>Media App</Typography>
               </Button>
             </ListItem>
           </Tooltip>
