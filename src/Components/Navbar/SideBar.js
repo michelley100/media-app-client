@@ -19,6 +19,7 @@ import { withRouter } from "react-router-dom";
 import PeopleIcon from "@material-ui/icons/People";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
+import TableChartIcon from "@material-ui/icons/TableChart";
 import clsx from "clsx";
 import { useStyles } from "./useStyles";
 import { useTheme } from "@material-ui/core/styles";
@@ -38,6 +39,8 @@ const SideBar = ({ opened, toggleDrawer, history, window }) => {
     { path: "/youtubevideos", icon: <VideoLibraryIcon />, name: "Youtube Videos" },
     { path: "/users/list", icon: <PeopleIcon />, name: "Users List" },
     { path: "/song/add", icon: <PlaylistAddIcon />, name: "Add Songs" },
+    { path: "/table", icon: <TableChartIcon />, name: "MaterialTable" },
+
   ];
 
   const getRoutes = (routes) => {

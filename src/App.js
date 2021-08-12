@@ -10,6 +10,8 @@ import { UserUpdate } from "./Pages/Users/UserUpdate";
 import { useStyles } from "./Components/Navbar/useStyles";
 import { VideoPlaying } from "./Pages/VideoPlaying/VideoPage.js";
 import { YoutubeVideos } from "./Pages/YoutubeVideos/Youtube.js";
+import { MaterialTable } from "./Pages/MaterialTable/Table.js";
+
 
 
 export const App = ({ history }) => {
@@ -25,6 +27,7 @@ export const App = ({ history }) => {
             <Route path="/videoplaying" component={VideoPlaying} />
             <Route path="/youtubevideos" component={YoutubeVideos} />
             <Route path="/song/add" component={SongAdd} />
+            <Route path="/table" component={MaterialTable} />
             <Route path="/song/update/:id" component={SongUpdate} />
             <Route path="/users/list" component={UsersList} />
             <Route path="/user/update/:id" component={UserUpdate} />
