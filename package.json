@@ -12,6 +12,7 @@
     "formik": "^2.2.1",
     "formik-material-ui": "^3.0.0",
     "react": "^16.14.0",
+    "react-calendar": "^3.4.0",
     "react-dom": "^16.14.0",
     "react-modal-hook": "^3.0.0",
     "react-router-dom": "^5.2.0",
