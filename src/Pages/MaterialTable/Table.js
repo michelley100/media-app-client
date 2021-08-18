@@ -12,52 +12,53 @@ import Paper from "@material-ui/core/Paper";
 export const MaterialTable = () => {
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    minWidth: 400,
   },
 });
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(name, country) {
+  return { name, country};
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
+  createData("Nature"),
+  createData("Country"),
+
+  // createData("Eclair", "BGF", "hggsg", "jh", "hgg"),
+  // createData("Cupcake", "ggg", "uuy", "hhgga", "hyuuu"),
+  // createData("Gingerbread", "nhh", "jhuu", "hgtg", "kiu"),
 ];
 
-// export default function BasicTable() {
   const classes = useStyles();
 
   return (
     <TableContainer component={Paper}>
+         <center><h2>Name of Videos</h2></center>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Video Playing</TableCell>
+            <TableCell align="right">YouTube</TableCell>
+            {/* <TableCell align="right">Genre</TableCell> */}
+            {/* <TableCell align="right">Released Year</TableCell> */}
+            {/* <TableCell align="right">Album</TableCell> */}
           </TableRow>
         </TableHead>
+
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.name}</TableCell>
+              {/* <TableCell align="right">{row.name}</TableCell> */}
+              {/* <TableCell align="right">{row.carbs}</TableCell> */}
+              {/* <TableCell align="right">{row.protein}</TableCell> */}
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-//  }
-}
+};
