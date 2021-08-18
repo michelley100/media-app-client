@@ -1,9 +1,14 @@
-import { Box, Button, Grid, Typography,  Card,
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  Card,
   CardContent,
   CardMedia,
-    IconButton,
+  IconButton,
   Paper,
- } from "@material-ui/core";
+} from "@material-ui/core";
 import { Delete, Update } from "@material-ui/icons";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -27,16 +32,14 @@ export const Home = ({ history }) => {
     setReload((reload) => !reload);
   };
 
-  const [
-    showCreateModal,
-    hideCreateModal,
-  ] = useModal(({ in: open, onExited }) => (
-    <SongFormDialog
-      open={open}
-      onExited={onExited}
-      onClose={hideCreateModal}
-      refresh={refresh}
-    />
+  const [showCreateModal, hideCreateModal] = useModal(
+    ({ in: open, onExited }) => (
+      <SongFormDialog
+        open={open}
+        onExited={onExited}
+        onClose={hideCreateModal}
+        refresh={refresh}
+      />
   ));
 
   useEffect(() => {
@@ -85,8 +88,7 @@ export const Home = ({ history }) => {
                 );
               })}
           </Grid>
-
-                  </Box>
+        </Box>
       </Grid>
     </>
   );
