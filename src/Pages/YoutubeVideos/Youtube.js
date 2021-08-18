@@ -18,8 +18,6 @@ import { useStyles } from "../../Components/Navbar/useStyles";
 //   import { SongForm } from "./Pages/Songs/SongForm";
 //   import { SongFormDialog } from "./Pages/Songs/SongFormDialog";
 import VideoPlayer from "react-video-js-player";
-// import Vid1 from "../../videos/Norway.mp4";
-// import Vid2 from "../../videos/Switzerland.mp4";
 
 export const YoutubeVideos = () => {
   const classes = useStyles();
@@ -50,8 +48,8 @@ export const YoutubeVideos = () => {
           <Paper elevation={2}>
             <Card className={classes.root}>
               <div>
-                <Typography variant="h6">Phil Wickham</Typography>
-                <Typography variant="h6">House of the Lord</Typography>
+                <Typography variant="h6">Bella Camp</Typography>
+                <Typography variant="h6">Behold</Typography>
 
                 <CardContent>
                   <div className={classes.grow}></div>
@@ -66,7 +64,7 @@ export const YoutubeVideos = () => {
                   <iframe
                     width="620"
                     height="320"
-                    src="https://www.youtube.com/embed/h8uKldEUrPE"
+                    src="https://www.youtube.com/embed/nbFcZNY6geY?list=RDnbFcZNY6geY"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
